@@ -9,5 +9,6 @@ Instructions:
 -Open the solution in VS2017 and build it (ensure you do a nuget restore!).
 -From a command prompt Run the service: Microservice-example.exe [port] [version]  eg: Microservice-example.exe 4001 v1
 -Multiple instances of the service can be run by specifying a different port.
--The consul.io web UI should show the services running. Stop the service to show failure in the consul web UI.  Stop the consul.io service to 
-show the service detect the failure and try to re-register itself.
+-The consul.io web UI should show the services running. Stop the service to show failure in the consul web UI.  
+
+Once everything is running stop the consul.io service to show the service detect the failure and try to re-register itself.
