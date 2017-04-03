@@ -13,12 +13,14 @@ namespace test1
         private static int timeout = 10000;
         private static System.Timers.Timer _timer;
         private static string _baseAddress;
-        private static string _version;
 
         private static void Main(string[] args)
         {
-            var port = string.IsNullOrEmpty(args[0]) ? "4000" : args[0];
-            _version = string.IsNullOrEmpty(args[1]) ? "v1" : args[1];
+            var port = "4001";
+            if (args.Length > 0)
+            {
+                port = args[0];
+            }
             _baseAddress = $"http://localhost:{port}/";
             Console.WriteLine(_baseAddress);
             try
@@ -47,7 +49,7 @@ namespace test1
                 var loggerFactory = new LoggerFactory();
                 var logger = loggerFactory.CreateLogger("logger");
                 var provider = new ConsulProvider(loggerFactory, Options.Create(options));
-                Cluster.RegisterService(new Uri(_baseAddress), provider, "orders", _version, logger);
+                Cluster.RegisterService(new Uri(_baseAddress), provider, "orders", "v1", logger);
 
                 Cluster.Client.KeyValuePut("gary", "foo");
                 Console.WriteLine("Success!");

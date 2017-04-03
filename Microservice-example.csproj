@@ -7,7 +7,7 @@
     <ProjectGuid>{FA9AAF8B-9635-4D80-B253-F434A139F558}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>test1</RootNamespace>
-    <AssemblyName>test1</AssemblyName>
+    <AssemblyName>Microservice-example</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -286,6 +286,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
