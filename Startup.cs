@@ -3,7 +3,7 @@ using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using Owin;
 
-namespace test1
+namespace MicroservicesExample
 {
     public class Startup
     {

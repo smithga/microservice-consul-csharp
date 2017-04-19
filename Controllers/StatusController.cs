@@ -4,18 +4,8 @@ using System.Web.Http;
 using Microphone;
 using Microsoft.Extensions.Logging;
 
-namespace test1
+namespace MicroservicesExample.Controller
 {
-
-    [Route("orders")]
-    public class OrdersController : ApiController
-    {
-
-        public string Get()
-        {
-            return "Orders Service";
-        }
-    }
 
     [Route("status")]
     public class StatusController : ApiController

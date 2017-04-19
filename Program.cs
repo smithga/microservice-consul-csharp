@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Owin.Hosting;
 
-namespace test1
+namespace MicroservicesExample
 {
     class Program
     {
