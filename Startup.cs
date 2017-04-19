@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Http;
-using Microsoft.AspNetCore.Mvc;
 using Owin;
 
 namespace MicroservicesExample
@@ -15,16 +14,7 @@ namespace MicroservicesExample
         {
             // Configure Web API for self-host. 
             HttpConfiguration config = new HttpConfiguration();
-            //config.Routes.MapHttpRoute(
-            //    name: "Status",
-            //    routeTemplate: "status",
-            //    defaults: new { Controller = "Orders", Action = "Status" }
-            //);
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "{Controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional, Controller = "Orders" }
-            //);
+
             config.MapHttpAttributeRoutes();
             config.EnsureInitialized();
             LastHealthCheck = DateTime.UtcNow;
