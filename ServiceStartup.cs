@@ -15,7 +15,6 @@ namespace MicroServiceExample
         private static int timeout = 10000;
         private static System.Timers.Timer _timer;
         private static string _baseAddress;
-        private static string consulHost;
 
         public ServiceStartup()
         {
@@ -75,8 +74,6 @@ namespace MicroServiceExample
             Console.WriteLine("Starting web Server...");
             WebApp.Start<Startup>(_baseAddress);
             Console.WriteLine("Server running at {0} - press Enter to quit. ", _baseAddress);
-
-            Console.ReadLine();
         }
 
         private void RegisterServerHealthMonitor()
