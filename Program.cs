@@ -62,7 +62,7 @@ namespace MicroservicesExample
                 var logger = loggerFactory.CreateLogger("logger");
                 var provider = new ConsulProvider(loggerFactory, Options.Create(options));
                 Console.WriteLine($"Connecting to consul server at: {options.Host}:{options.Port}");
-                Cluster.RegisterService(new Uri(_baseAddress), provider, "orders", "v1", logger);
+                Cluster.RegisterService(new Uri(_baseAddress), provider, "orders", "v1", logger, new string[] { "v1" });
 
                 Cluster.Client.KeyValuePut("gary", "foo");
                 Console.WriteLine("Success!");
