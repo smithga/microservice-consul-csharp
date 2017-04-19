@@ -33,12 +33,12 @@ namespace MicroServiceExample
             UnregisterService();
         }
 
-        private static void UnregisterService()
+        private void UnregisterService()
         {
-
+            
         }
 
-        private static void RegisterService()
+        private void RegisterService()
         {
             try
             {
@@ -54,8 +54,7 @@ namespace MicroServiceExample
                 var provider = new ConsulProvider(loggerFactory, Options.Create(options));
                 Console.WriteLine($"Connecting to consul server at: {options.Host}:{options.Port}");
                 Cluster.RegisterService(new Uri(_baseAddress), provider, "orders", "v1", logger, new string[] { "v1" });
-
-                Cluster.Client.KeyValuePut("foo", "bar");
+                AddConfiguration();
                 Console.WriteLine("Success!");
             }
             catch (Exception ex)
@@ -65,7 +64,12 @@ namespace MicroServiceExample
             }
         }
 
-        private static void RunOwinHost()
+        private void AddConfiguration()
+        {
+            Cluster.Client.KeyValuePut("foo", "bar");
+        }
+
+        private void RunOwinHost()
         {
 
             Console.WriteLine("Starting web Server...");
@@ -75,7 +79,7 @@ namespace MicroServiceExample
             Console.ReadLine();
         }
 
-        private static void RegisterServerHealthMonitor()
+        private void RegisterServerHealthMonitor()
         {
             _timer = new System.Timers.Timer { Interval = timeout };
             _timer.Elapsed += ServerHealthCheck;
@@ -85,12 +89,12 @@ namespace MicroServiceExample
 
         // When the consul server checks the health of this service we store the last date/time.  If that last check exceeds our threshold we
         // assume that the server has failed and should try to re-register our service!
-        private static void ServerHealthCheck(object sender, object args)
+        private void ServerHealthCheck(object sender, object args)
         {
             var lastHealthCheck = Startup.LastHealthCheck;
             var diff = DateTime.UtcNow.Subtract(lastHealthCheck).TotalMilliseconds;
             if (!(diff > timeout)) return;
-            Console.WriteLine("Server Health Check: Server timeout!!!");
+            Console.WriteLine("Server Health Check: Server timeout!");
             RegisterService();
         }
 
