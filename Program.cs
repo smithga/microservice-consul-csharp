@@ -13,13 +13,20 @@ namespace test1
         private static int timeout = 10000;
         private static System.Timers.Timer _timer;
         private static string _baseAddress;
+        private static string consulHost;
 
         private static void Main(string[] args)
         {
-            var port = "4001";
+            consulHost = "localhost";
             if (args.Length > 0)
             {
-                port = args[0];
+                consulHost = args[0];
+            }
+
+            var port = "4001";
+            if (args.Length > 1)
+            {
+                port = args[1];
             }
             _baseAddress = $"http://localhost:{port}/";
             Console.WriteLine(_baseAddress);
@@ -45,10 +52,16 @@ namespace test1
             try
             {
                 Console.WriteLine("Register Service");
-                var options = new ConsulOptions();
+                var options = new ConsulOptions
+                {
+                    Host = consulHost
+                    // Port = 8500
+                    
+                };
                 var loggerFactory = new LoggerFactory();
                 var logger = loggerFactory.CreateLogger("logger");
                 var provider = new ConsulProvider(loggerFactory, Options.Create(options));
+                Console.WriteLine($"Connecting to consul server at: {options.Host}:{options.Port}");
                 Cluster.RegisterService(new Uri(_baseAddress), provider, "orders", "v1", logger);
 
                 Cluster.Client.KeyValuePut("gary", "foo");
@@ -57,6 +70,7 @@ namespace test1
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
         }
 
@@ -66,7 +80,6 @@ namespace test1
             Console.WriteLine("Starting web Server...");
             WebApp.Start<Startup>(_baseAddress);
             Console.WriteLine("Server running at {0} - press Enter to quit. ", _baseAddress);
-
             // var instances = Cluster.Client.GetServiceInstances("orders");
             // var instance = instances.FirstOrDefault();
 

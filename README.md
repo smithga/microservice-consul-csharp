@@ -1,8 +1,9 @@
 # microservice-consul-csharp
 Example of self monitoring micro service using Consul.io and Microphone.  Written in C# using Web Api and OWIN
 
-This sample application shows how to build a self hosted web api that uses Microphone to register itself with consul.io.  It implements a web api controller (status) for health checking by 
-the server an provides a very basic mechanism for the service to ensure the consul.io server is running and recover from server failures.
+This sample application shows how to build a self hosted web api that uses Microphone to register itself with consul.io.  It implements 
+a web api controller (status) for health checking by the server an provides a very basic mechanism for the service to ensure the 
+consul.io server is running and recover from server failures.
 
 Instructions:
 > install and run consul.io (https://consul.io).  
